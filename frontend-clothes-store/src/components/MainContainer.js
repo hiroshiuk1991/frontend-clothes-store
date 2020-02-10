@@ -1,9 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 
 import ItemList from './ItemList'
 import SignUpPage from './SignUpPage'
 import NavBar from './NavBar'
+import API from '../API';
 // import Cart from './Cart'
 
 
@@ -13,11 +14,12 @@ class MainContainer extends React.Component {
         items: [],
         username: null
     }
-    signUp = username => {
-        this.setState({ username: username })
+    signUp = data => {
+        this.setState({ username: data.username })
+        localStorage.token = data.token
     }
 
-    signout = () => {
+    signOut = () => {
         this.setState({ username: null })
     }
 
@@ -25,28 +27,44 @@ class MainContainer extends React.Component {
         if (this.props.username === null ) {
             this.props.history.push('/signin')
         }
+        else if (localStorage.token){
+        API.validate()
+            .then(data => {
+                if (data.error) throw Error(data.error)
+                this.signUp(data)
+                this.props.history.push('/mainContainer')
+            })
+            .catch(error => alert(error))
+        }
     }
 
 
     render() {
-        const { items, username } = this.state
-        const { signUp, signOut } = this.props
-        return(
-            <Router>
-                <div>
-                    {/* <Route exact path="/Items" component ={ItemList, items={items} }/>
-                    
-                    <Route exact path="/signUp" component={ props => SignUpPage{...props},
-                         signUp={signUp},
-                         signOut={signOut}}/>
-                    <NavBar username={username} /> */}
-                </div>
-            </Router>
-        )
         
-    }
+        return(
+            <div>
+                <NavBar username={username} signOut={this.signOut}/>
+                    <Switch>
+                        <Route exact path='/signin' component={props => <SignUpPage {...props}
+                    signUp={this.signUp}    
+                    /> } />
+                    <Route path='/itemList' component={props => (
+                        <ItemList {...props} username={this.state.username}
+                     />)} 
+                     />
+                    <Route component={NotFound}/>
+                   </Switch>
+                   </div>
+                   
+                   )
+                   
+                }
+                
+                
+            }
+            
+            export default withRouter(MainContainer);
 
 
-}
 
-export default MainContainer;
+           

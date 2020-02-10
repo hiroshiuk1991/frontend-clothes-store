@@ -1,5 +1,12 @@
 const BASEURL = 'http://localhost:3000'
 const signInUrl = BASEURL + '/signin'
+const validateUrl = BASEURL + '/validate'
+
+const get = url => fetch(url, {
+    headers: {
+        Authorization: localStorage.token
+    }
+}).then(resp => resp.json())
 
 const post = (url, data) => 
     fetch(url, {
@@ -12,4 +19,6 @@ const post = (url, data) =>
 
 const signIn = (username, password) => post(signInUrl, {username, password})
 
-export default {signIn}
+const validate = () => get(validateUrl)
+
+export default {signIn, validate}
