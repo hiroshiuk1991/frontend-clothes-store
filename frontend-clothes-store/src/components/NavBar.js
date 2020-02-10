@@ -1,9 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { Button } from '@material-ui/core'
 
 
 const NavBar = ({username, signOut}) => {
     return (
+        <div>
         <h3> {username? `Welcome Back ${username}` 
         : 'Welcome to Clothes Store'} </h3>
         <div>
@@ -16,6 +18,7 @@ const NavBar = ({username, signOut}) => {
                     SIGN OUT
                 </Button>
             )}
+        </div>
         </div>
     )
 }

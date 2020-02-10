@@ -43,7 +43,7 @@ class MainContainer extends React.Component {
         
         return(
             <div>
-                <NavBar username={username} signOut={this.signOut}/>
+                <NavBar username={this.state.username} signOut={this.signOut}/>
                     <Switch>
                         <Route exact path='/signin' component={props => <SignUpPage {...props}
                     signUp={this.signUp}    
@@ -52,7 +52,7 @@ class MainContainer extends React.Component {
                         <ItemList {...props} username={this.state.username}
                      />)} 
                      />
-                    <Route component={NotFound}/>
+                    {/* <Route component={NotFound}/> */}
                    </Switch>
                    </div>
                    
