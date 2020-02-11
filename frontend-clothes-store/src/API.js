@@ -1,5 +1,5 @@
 const BASEURL = 'http://localhost:3000'
-const signInUrl = BASEURL + '/signup'
+const loginUrl = BASEURL + '/login'
 const validateUrl = BASEURL + '/validate'
 
 const get = url =>
@@ -19,8 +19,14 @@ const post = (url, data) =>
   }).then(resp => resp.json())
 
 
-const signIn = (username, password) => post(signInUrl, { username, password })
+const login = (username, password) => post(loginUrl, 
+    {customer: 
+        { username:username,
+            password:password
+        }
+    }
+    )
 
 const validate = () => get(validateUrl)
 
-export default { signIn, validate }
+export default { login, validate }

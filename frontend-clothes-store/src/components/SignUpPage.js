@@ -11,12 +11,12 @@ class SignUpPage extends React.Component {
   }
 
   handleSubmit = () => {
-    API.signIn(this.state.username, this.state.password)
+    API.login(this.state.username, this.state.password)
       .then(data => {
-        debugger
+        
         if (data.error) throw Error(data.error)
-        this.props.signIn(data)
-        this.props.history.push('/MainContainer')
+        this.props.login(data)
+        this.props.history.push('/')
       })
       .catch(error => alert(error))
   }

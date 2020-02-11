@@ -10,7 +10,7 @@ const NavBar = ({username, signOut}) => {
         : 'Welcome to Clothes Store'} </h3>
         <div>
             <NavLink to='/' exact>Homepage</NavLink>
-            <NavLink to='/signup' exact>Sign In/Sign Up</NavLink> 
+            <NavLink to='/login' exact>Login/Create Account</NavLink> 
             <NavLink to='/itemslist' exact>Items List</NavLink> 
             <NavLink to='/cart' exact>Cart</NavLink>  
             {username && (
