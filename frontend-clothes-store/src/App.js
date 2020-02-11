@@ -1,19 +1,24 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+// import { Route, withRouter, Switch } from 'react-router-dom';
 
-import './App.css'
+
+
+
 import MainContainer from './components/MainContainer'
 
 class App extends React.Component {
-  render () {
-    return (
-      <Router>
-        <div>
-          <Route exact path='/' component={MainContainer} />
-        </div>
-      </Router>
-    )
-  }
-}
 
-export default App
+
+
+  render () {
+
+    return (
+          <div>
+             <MainContainer />
+          </div>
+      )
+    }
+  }
+  
+  export default App

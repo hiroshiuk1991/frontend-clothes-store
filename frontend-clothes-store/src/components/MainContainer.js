@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import ItemList from './ItemList'
 import SignUpPage from './SignUpPage'
@@ -36,25 +36,36 @@ class MainContainer extends React.Component {
             })
             .catch(error => alert(error))
         }
+    
+        fetch('http://localhost:3000/items')
+        .then(resp => resp.json())
+        .then(items => this.setState({ items }))
+        
     }
 
 
     render() {
-        
+        const { username, items } = this.state
+        const { signOut, signUp } = this
         return(
-            <div>
-                <NavBar username={this.state.username} signOut={this.signOut}/>
+              <div>
+                    <Router>
+                    <NavBar username={username} signOut={signOut} />
+                        <div>
+                        </div>
                     <Switch>
-                        <Route exact path='/signin' component={props => <SignUpPage {...props}
-                    signUp={this.signUp}    
-                    /> } />
-                    <Route path='/itemList' component={props => (
-                        <ItemList {...props} username={this.state.username}
-                     />)} 
-                     />
-                    {/* <Route component={NotFound}/> */}
-                   </Switch>
-                   </div>
+                        <Route exact path='/signup' component={props => <SignUpPage {...props}
+                        signUp={signUp}
+                        />} />
+                        <Route path='/items' component={props => (
+                        <ItemList {...props}
+                            username={username}
+                            items={items}
+                        />)}
+                        />
+                    </Switch>
+                </Router>
+                    </div>
                    
                    )
                    
@@ -62,9 +73,8 @@ class MainContainer extends React.Component {
                 
                 
             }
-            
-            export default withRouter(MainContainer);
-
-
+                export default MainContainer;
+                
+                
 
            
