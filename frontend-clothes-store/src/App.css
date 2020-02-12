@@ -1,3 +1,75 @@
+html {
+  background: url("https://i.pinimg.com/originals/2f/26/72/2f26726dc627661f4376f9baee26cd83.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.prof-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 85%;
+  height: 45%;
+  margin-left: 5%;
+  background-color: rgba(243,243,179,0.7);
+  padding: 40px;
+}
+
+.title {
+  text-align: center;
+
+  font-size: 80px;
+  font-family: 'Monoton', cursive;
+  color: lightcoral;
+}
+
+.welcome {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Monoton', cursive;
+  color: lightcoral;
+}
+
+.link {
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+  font-family: 'Monoton', cursive;
+  color: lightcoral;
+;
+}
+
+.navdiv {
+  text-align: center;
+
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 300px;
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+  max-height: 500px;
+  max-width: 300px; 
+  object-fit: contain;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-container {
+  padding: 20px 16px;
+}
+
+
 .App {
   text-align: center;
 }

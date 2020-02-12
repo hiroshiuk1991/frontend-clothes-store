@@ -7,9 +7,9 @@ class ItemList extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="prof-box">
                 {this.props.items.map(item => <ItemCard item={item} key={item.id} addToCart={this.props.addToCart}/>)}
-                
+                <button onClick={this.props.renderMore}>More Items</button>
             </div>
         )
     }

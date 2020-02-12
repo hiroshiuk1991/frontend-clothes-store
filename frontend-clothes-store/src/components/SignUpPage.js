@@ -11,7 +11,6 @@ class SignUpPage extends React.Component {
     newUser: false,
     usernameSignup: '',
     passwordSignup: ''
-    // isHidden: false
   }
 
   handleSubmit = () => {
@@ -41,7 +40,7 @@ class SignUpPage extends React.Component {
   
     newCustomer = () => 
         this.setState( { newUser: !this.state.newUser } )
-        // this.setState( { isHidden: !this.state.isHidden })
+       
   
     handleNewAccount = event => 
       this.setState({ [event.target.name]: event.target.value })
@@ -54,10 +53,10 @@ class SignUpPage extends React.Component {
     const { handleChange, handleSubmit, newCustomer, handleCreateAccount, handleNewAccount } = this
 
     return (
-      // <div hidden={this.state.isHidden}>
+      
       <div>
         <TextField
-          // id='usernameInput'
+          
           label='Username'
           value={username}
           onChange={handleChange}
@@ -90,7 +89,6 @@ class SignUpPage extends React.Component {
         {newUser ? 
           <div>
             <TextField
-              // id='usernameInput'
               label='Username'
               value={username}
               onChange={handleNewAccount}
@@ -99,7 +97,6 @@ class SignUpPage extends React.Component {
             />
             <br />
             <TextField
-              // id='passwordInput'
               label='Password'
               value={password}
               onChange={handleNewAccount}
