@@ -19,8 +19,8 @@ html {
 
 .title {
   text-align: center;
-
-  font-size: 80px;
+  letter-spacing: 0.6em;
+  font-size: 70px;
   font-family: 'Monoton', cursive;
   color: lightcoral;
 }
@@ -43,7 +43,17 @@ html {
 
 .navdiv {
   text-align: center;
+}
 
+.logindiv {
+  text-align: right;
+  padding-right: 300px;
+font-size: 40px;
+}
+
+.loginstuff {
+  font-family: 'Monoton', cursive;
+  color: lightcoral;
 }
 
 .card {
@@ -52,13 +62,87 @@ html {
   transition: 0.3s;
   border-radius: 5px;
   width: 300px;
+  overflow: hidden;
 }
+
+.cartcard {
+background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+transition: 0.3s;
+border-radius: 5px;
+width: 300px;
+overflow: hidden;
+}
+
+.morebutton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color:#C12957;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+
+
+.morebutton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.morebutton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.morebutton:hover span {
+  padding-right: 25px;
+}
+
+.morebutton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.addtocart {
+background-color: #C12957; 
+border: none;
+color: white;
+padding: 16px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+transition-duration: 0.4s;
+cursor: pointer;
+
+}
+
+.addtocart:hover {
+  background-color: pink;
+  color: white;
+}
+
 
 img {
   border-radius: 5px 5px 0 0;
-  max-height: 500px;
-  max-width: 300px; 
+  max-height: 400px; 
+  overflow: hidden;
   object-fit: contain;
+  
 }
 
 .card:hover {

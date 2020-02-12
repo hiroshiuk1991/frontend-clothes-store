@@ -29,6 +29,7 @@ class SignUpPage extends React.Component {
     .then(data => {
       
       if (data.error) throw Error(data.error)
+      this.props.login(data)
       this.props.history.push('/')
     })
     .catch(error => alert(error))
@@ -54,9 +55,8 @@ class SignUpPage extends React.Component {
 
     return (
       
-      <div>
+      <div className='logindiv'>
         <TextField
-          
           label='Username'
           value={username}
           onChange={handleChange}
@@ -65,7 +65,6 @@ class SignUpPage extends React.Component {
         />
         <br />
         <TextField
-          // id='passwordInput'
           label='Password'
           value={password}
           onChange={handleChange}

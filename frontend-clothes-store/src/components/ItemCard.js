@@ -16,7 +16,7 @@ class ItemCard extends React.Component {
                  <h3>Size: {this.props.item.size}</h3>
             
 
-                <button onClick={() => this.props.addToCart(this.props.item.id, this.props.item.name)}> Add to Cart</button>
+                <button class='addtocart' onClick={() => this.props.addToCart(this.props.item.id, this.props.item.name)}> Add to Cart</button>
             </div>
             </div>
         )
