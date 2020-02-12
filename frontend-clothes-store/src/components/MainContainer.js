@@ -5,12 +5,13 @@ import ItemList from './ItemList'
 import SignUpPage from './SignUpPage'
 import NavBar from './NavBar'
 import API from '../API'
-// import Cart from './Cart'
+import Cart from './Cart'
 
 class MainContainer extends React.Component {
   state = {
     items: [],
-    username: null
+    username: null, 
+    itemsToBuy: []
   }
   login = data => {
     this.setState({ username: data.customer })
@@ -21,6 +22,10 @@ class MainContainer extends React.Component {
     this.setState({ username: null })
     localStorage.removeItem('token')
   }
+
+ addToCart = item => {
+        this.setState(item,...this.state.itemsToBuy)
+    }
 
   componentDidMount () {
       if (this.props.username === null) {
@@ -41,8 +46,8 @@ class MainContainer extends React.Component {
   }
 
   render () {
-    const { username, items } = this.state
-    const { signOut, login } = this
+    const { username, items, itemsToBuy } = this.state
+    const { signOut, login, addToCart } = this
     return (
       <div>
         <BrowserRouter>
@@ -56,8 +61,14 @@ class MainContainer extends React.Component {
               <Route
                 exact path='/itemslist'
                 component={props => (
-                  <ItemList {...props} username={username} items={items} />
-                )}
+                  <ItemList {...props} username={username} items={items} addToCart={addToCart} 
+                    />)} />
+              <Route
+                 exact path='/cart'
+                 component={props => (
+                  <Cart {...props}  itemsToBuy={itemsToBuy} 
+                   />
+                    )}
               />
             </Switch>
           </div>

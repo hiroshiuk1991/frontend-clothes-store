@@ -7,7 +7,8 @@ class ItemList extends React.Component {
     render() {
         return(
             <div>
-                {this.props.items.map(item => <ItemCard item={item} key={item.id}/>)}
+                {this.props.items.map(item => <ItemCard item={item} key={item.id} addToCart={this.props.addToCart}/>)}
+                
             </div>
         )
     }

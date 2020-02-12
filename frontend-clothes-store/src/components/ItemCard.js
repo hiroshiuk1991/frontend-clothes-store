@@ -6,7 +6,10 @@ class ItemCard extends React.Component {
 
     render () {
         return(
-            <h1>{this.props.item.name}</h1>
+            <div>
+            <h3>{this.props.item.name}</h3>
+                <button onClick={this.props.addToCart}> Add to Cart</button>
+            </div>
         )
     }
 

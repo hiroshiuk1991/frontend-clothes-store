@@ -1,6 +1,7 @@
 const BASEURL = 'http://localhost:3000'
 const loginUrl = BASEURL + '/login'
 const validateUrl = BASEURL + '/validate'
+const custUrl = BASEURL + '/customers'
 
 const get = url =>
   fetch(url, {
@@ -13,7 +14,8 @@ const post = (url, data) =>
   fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accepts': 'application/json'
     },
     body: JSON.stringify(data)
   }).then(resp => resp.json())
@@ -25,8 +27,33 @@ const login = (username, password) => post(loginUrl,
             password:password
         }
     }
-    )
+  )
 
-const validate = () => get(validateUrl)
+const createAccount = (username, password) => post(custUrl,
+      {customer:
+        {username: username,
+          password: password
+        }
+      }
+//       .then(customer => login({customer.username,
+// customer.password}))    
+        )
+      
+      const validate = () => get(validateUrl)
+      
+      export default { login, validate, createAccount }
+      
 
-export default { login, validate }
+
+
+
+
+      // const createAccount = (url, data) => 
+      //   fetch(custUrl, {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content=Type': 'application/json',
+      //       'Accepts': 'application/json'
+      //     },
+      //     body: JSON.stringify(data)
+      //   }).then(resp => resp.json())

@@ -6,13 +6,16 @@ import API from '../API'
 
 class SignUpPage extends React.Component {
   state = {
-    username: '',
-    password: '',
+    usernameLogin: '',
+    passwordLogin: '',
     newUser: false,
+    usernameSignup: '',
+    passwordSignup: ''
+    // isHidden: false
   }
 
   handleSubmit = () => {
-    API.login(this.state.username, this.state.password)
+    API.login(this.state.usernameLogin, this.state.passwordLogin)
       .then(data => {
         
         if (data.error) throw Error(data.error)
@@ -21,39 +24,54 @@ class SignUpPage extends React.Component {
       })
       .catch(error => alert(error))
   }
+  
+  handleCreateAccount = () => {
+    API.createAccount(this.state.usernameSignup, this.state.passwordSignup)
+    .then(data => {
+      
+      if (data.error) throw Error(data.error)
+      this.props.history.push('/')
+    })
+    .catch(error => alert(error))
+  }
+  
 
-  handleChange = event =>
-    this.setState({ [event.target.name]: event.target.value })
+    handleChange = event =>
+      this.setState({ [event.target.name]: event.target.value })
+  
+    newCustomer = () => 
+        this.setState( { newUser: !this.state.newUser } )
+        // this.setState( { isHidden: !this.state.isHidden })
+  
+    handleNewAccount = event => 
+      this.setState({ [event.target.name]: event.target.value })
 
-  newCustomer = () => 
-      this.setState( { newUser: !this.state.newUser } )
 
-  handleNewAccount = event => 
-    this.setState({ [event.target.name]: event.target.value })
+
 
   render () {
     const { username, password, newUser } = this.state
-    const { handleChange, handleSubmit, newCustomer } = this
+    const { handleChange, handleSubmit, newCustomer, handleCreateAccount, handleNewAccount } = this
 
     return (
+      // <div hidden={this.state.isHidden}>
       <div>
-      
         <TextField
-          id='usernameInput'
+          // id='usernameInput'
           label='Username'
           value={username}
           onChange={handleChange}
           margin='normal'
-          name='username'
+          name='usernameLogin'
         />
         <br />
         <TextField
-          id='passwordInput'
+          // id='passwordInput'
           label='Password'
           value={password}
           onChange={handleChange}
           margin='normal'
-          name='password'
+          name='passwordLogin'
           type='password'
         />
 
@@ -72,25 +90,25 @@ class SignUpPage extends React.Component {
         {newUser ? 
           <div>
             <TextField
-              id='usernameInput'
+              // id='usernameInput'
               label='Username'
               value={username}
-              onChange={handleChange}
+              onChange={handleNewAccount}
               margin='normal'
-              name='username'
+              name='usernameSignup'
             />
             <br />
             <TextField
-              id='passwordInput'
+              // id='passwordInput'
               label='Password'
               value={password}
-              onChange={handleChange}
+              onChange={handleNewAccount}
               margin='normal'
-              name='password'
+              name='passwordSignup'
               type='password'
             />
             <br />
-            <Button onClick={this.handleNewAccount} variant='contained' color='primary'>
+            <Button onClick={handleCreateAccount} variant='contained' color='primary'>
             Create
             </Button>
             </div>

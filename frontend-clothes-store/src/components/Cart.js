@@ -4,8 +4,11 @@ class Cart extends React.Component {
 
 
     render () {
+    const items = this.props.itemsToBuy
         return (
-            <div></div>
+            <div>
+            {items.map(item => <h2>{item.name}</h2>)}
+            </div>
         )
     }
 
