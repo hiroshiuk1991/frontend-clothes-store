@@ -1,13 +1,17 @@
 import React from 'react'
 
+import CartItem from './CartItem'
+
 class Cart extends React.Component {
 
 
     render () {
-    const items = this.props.itemsToBuy
+    
         return (
             <div>
-            {items.map(item => <h2>{item.name}</h2>)}
+            {
+                this.props.itemsToBuy.map(item => <CartItem item={item} key={item.id}/>)
+            }
             </div>
         )
     }
