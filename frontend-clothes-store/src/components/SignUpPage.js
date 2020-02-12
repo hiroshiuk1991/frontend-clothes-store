@@ -7,7 +7,8 @@ import API from '../API'
 class SignUpPage extends React.Component {
   state = {
     username: '',
-    password: ''
+    password: '',
+    newUser: false,
   }
 
   handleSubmit = () => {
@@ -24,12 +25,19 @@ class SignUpPage extends React.Component {
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value })
 
+  newCustomer = () => 
+      this.setState( { newUser: !this.state.newUser } )
+
+  handleNewAccount = event => 
+    this.setState({ [event.target.name]: event.target.value })
+
   render () {
-    const { username, password } = this.state
-    const { handleChange, handleSubmit } = this
+    const { username, password, newUser } = this.state
+    const { handleChange, handleSubmit, newCustomer } = this
 
     return (
       <div>
+      
         <TextField
           id='usernameInput'
           label='Username'
@@ -48,14 +56,46 @@ class SignUpPage extends React.Component {
           name='password'
           type='password'
         />
+
         <br />
         <Button onClick={handleSubmit} variant='contained' color='primary'>
           SUBMIT
         </Button>
         <br />
-        <Button onClick={handleSubmit} variant='contained' color='primary'>
-          Create
+        <br />
+
+        <Button onClick={() => newCustomer()} variant='contained' color='primary'>
+          Create Account
         </Button>
+        <br />
+        <br />
+        {newUser ? 
+          <div>
+            <TextField
+              id='usernameInput'
+              label='Username'
+              value={username}
+              onChange={handleChange}
+              margin='normal'
+              name='username'
+            />
+            <br />
+            <TextField
+              id='passwordInput'
+              label='Password'
+              value={password}
+              onChange={handleChange}
+              margin='normal'
+              name='password'
+              type='password'
+            />
+            <br />
+            <Button onClick={this.handleNewAccount} variant='contained' color='primary'>
+            Create
+            </Button>
+            </div>
+          : null }
+       
       </div>
     )
   }

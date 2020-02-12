@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import ItemList from './ItemList'
 import SignUpPage from './SignUpPage'
@@ -19,11 +19,12 @@ class MainContainer extends React.Component {
 
   signOut = () => {
     this.setState({ username: null })
+    localStorage.removeItem('token')
   }
 
   componentDidMount () {
       if (this.props.username === null) {
-      this.props.history.push('/login')
+      this.props.history.push('/')
     } else if (localStorage.token) {
       API.validate()
         .then(data => {
@@ -53,7 +54,7 @@ class MainContainer extends React.Component {
                 component={props => <SignUpPage {...props} login={login} />}
               />
               <Route
-                exact path='/items'
+                exact path='/itemslist'
                 component={props => (
                   <ItemList {...props} username={username} items={items} />
                 )}

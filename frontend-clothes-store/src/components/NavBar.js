@@ -14,7 +14,7 @@ const NavBar = ({username, signOut}) => {
             <NavLink to='/itemslist' exact>Items List</NavLink> 
             <NavLink to='/cart' exact>Cart</NavLink>  
             {username && (
-                <Button onClick={signOut}>
+                    <Button onClick={signOut} variant='contained' color='primary'>
                     SIGN OUT
                 </Button>
             )}
