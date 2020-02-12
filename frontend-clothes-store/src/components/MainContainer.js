@@ -15,8 +15,11 @@ class MainContainer extends React.Component {
     username: null,
     userId: null,
     itemsToBuy: [],
-    index: 0
+    index: 0,
+    searchTerm: "",
+    filterBy: 'All' 
   }
+
   login = data => {
     this.setState({
       username: data.customer_username,
@@ -38,6 +41,27 @@ class MainContainer extends React.Component {
         item_name: name
       }
     })
+
+    updateSearchTerm = event => {
+      this.setState({
+          searchTerm: event.target.value
+      })
+    }
+
+    updateFilter = event => {
+      this.setState({filterBy: event.target.value})
+    }
+
+    searchbarFilterItems = () => {
+      return this.state.items.filter(item => 
+        item.category.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    }
+
+    dropdownFilterItems = items => {
+      return this.state.filterBy === 'All'
+       ? items
+       : items.filter(item => item.gender === this.state.filterBy)
+    }
 
   componentDidMount () {
     if (this.props.username === null) {
@@ -72,14 +96,17 @@ class MainContainer extends React.Component {
   }
 
   render () {
-    const { username, items, itemsToBuy, index } = this.state
-    const { signOut, login, addToCart, renderMore } = this
-    const renderTen = items.slice(index, index + 10)
+    const searchbarFilteredItems = this.searchbarFilterItems()
+    const searchbarAndDropdownFiltered = this.dropdownFilterItems(searchbarFilteredItems)
+    const { username, itemsToBuy, index, filterBy} = this.state //took items away as not nec
+    const { signOut, login, addToCart, renderMore, updateFilter, updateSearchTerm } = this
+    const renderTen = searchbarAndDropdownFiltered.slice(index, index + 10)
         return (
       <div>
        
         <BrowserRouter>
-          <NavBar username={username} signOut={signOut} />
+          <NavBar username={username} signOut={signOut} updateFilter={updateFilter} updateSearchTerm={updateSearchTerm}
+          filterBy={filterBy}/>
                     <h1 className='title'>The Clothes Store</h1>
           <div>
             <Switch>
