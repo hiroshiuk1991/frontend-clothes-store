@@ -7,6 +7,7 @@ class CartItem extends React.Component {
         return(
             <div className='cartcard'>
             {this.props.item.item_name}
+            <button className='removebutton'> Remove </button>
             </div>
         )
     }

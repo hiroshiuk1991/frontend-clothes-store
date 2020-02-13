@@ -116,6 +116,49 @@ overflow: hidden;
   right: 0;
 }
 
+
+.morebutton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color:#C12957;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+
+
+.morebutton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.morebutton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.morebutton:hover span {
+  padding-right: 25px;
+}
+
+.morebutton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 .addtocart {
 background-color: #C12957; 
 border: none;
@@ -134,6 +177,47 @@ cursor: pointer;
 .addtocart:hover {
   background-color: pink;
   color: white;
+}
+
+
+.removebutton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #c12957;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.removebutton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.removebutton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.removebutton:hover span {
+  padding-right: 25px;
+}
+
+.removebutton:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 
