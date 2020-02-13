@@ -85,8 +85,12 @@ class MainContainer extends React.Component {
       .then(items => this.setState({ itemsToBuy: items }))
   }
 
+
+  
   renderMore = () => {
-      this.state.index >= 40
+    const searchbarFilteredItems = this.searchbarFilterItems()
+    const searchbarAndDropdownFiltered = this.dropdownFilterItems(searchbarFilteredItems)
+      this.state.index >= searchbarAndDropdownFiltered.length - 8
       ? this.setState({
           index: 0
       })
@@ -98,34 +102,56 @@ class MainContainer extends React.Component {
   render () {
     const searchbarFilteredItems = this.searchbarFilterItems()
     const searchbarAndDropdownFiltered = this.dropdownFilterItems(searchbarFilteredItems)
-    const { username, itemsToBuy, index, filterBy} = this.state //took items away as not nec
+    const { username, itemsToBuy, index, filterBy, searchTerm} = this.state //took items away as not nec
     const { signOut, login, addToCart, renderMore, updateFilter, updateSearchTerm } = this
-    const renderTen = searchbarAndDropdownFiltered.slice(index, index + 10)
+    const renderEight = searchbarAndDropdownFiltered.slice(index, index + 8)
         return (
       <div>
        
         <BrowserRouter>
-          <NavBar username={username} signOut={signOut} updateFilter={updateFilter} updateSearchTerm={updateSearchTerm}
-          filterBy={filterBy}/>
+          <NavBar username={username} signOut={signOut}  />
                     <h1 className='title'>The Clothes Store</h1>
           <div>
             <Switch>
               <Route
                 exact
                 path='/login'
-                component={props => <SignUpPage {...props} login={login} />}
+                render={props => <SignUpPage {...props} login={login} />}
               />
               <Route
                 exact
                 path='/itemslist'
-                component={props => (
+                render={props => (
+                  <>
+                  <div className="filterContainer">
+             <div className="filters">
+              <label>
+                  Filter:
+                  <select value={filterBy} onChange={updateFilter}>         
+                    <option>All</option>
+                    <option>Mens</option>
+                    <option>Womens</option>
+                    <option>Kids</option>
+                  </select>
+             </label>
+           
+           <br></br>
+            Search:
+              <input value={searchTerm} onChange={updateSearchTerm} placeholder='enter clothing type..' /> 
+              
+           
+           
+           </div>
+           </div>
                   <ItemList
                     {...props}
                     username={username}
-                    items={renderTen}
+                    items={renderEight}
                     addToCart={addToCart}
                     renderMore={renderMore}
-                  />
+
+                  />    
+                  </>
                 )}
               />
               <Route

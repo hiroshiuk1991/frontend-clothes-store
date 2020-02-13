@@ -30,6 +30,7 @@ class SignUpPage extends React.Component {
       
       if (data.error) throw Error(data.error)
       this.props.login(data)
+
       this.props.history.push('/')
     })
     .catch(error => alert(error))
@@ -54,8 +55,9 @@ class SignUpPage extends React.Component {
     const { handleChange, handleSubmit, newCustomer, handleCreateAccount, handleNewAccount } = this
 
     return (
-      
+      <div className='loginContainer'>
       <div className='logindiv'>
+        <div className='wrapper'>
         <TextField
           label='Username'
           value={username}
@@ -109,7 +111,8 @@ class SignUpPage extends React.Component {
             </Button>
             </div>
           : null }
-       
+       </div>
+      </div>
       </div>
     )
   }

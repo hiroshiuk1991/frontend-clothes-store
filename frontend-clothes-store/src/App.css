@@ -13,7 +13,7 @@ html {
   width: 85%;
   height: 45%;
   margin-left: 5%;
-  background-color: rgba(243,243,179,0.7);
+  background-color: rgba(600, 250, 330, 0.9);
   padding: 40px;
 }
 
@@ -23,6 +23,21 @@ html {
   font-size: 70px;
   font-family: 'Monoton', cursive;
   color: lightcoral;
+}
+
+.filters {
+  background-color: rgba(600, 250, 330, 0.9);
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Monoton', cursive;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 400px;
+  width: 100vw;
 }
 
 .welcome {
@@ -45,10 +60,28 @@ html {
   text-align: center;
 }
 
-.logindiv {
+/* .logindiv {
   text-align: right;
   padding-right: 300px;
 font-size: 40px;
+} */
+
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 400px;
+  width: 100vw;
+}
+
+.logindiv {
+  background-color: rgba(240, 238, 238, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 7px;
 }
 
 .loginstuff {
