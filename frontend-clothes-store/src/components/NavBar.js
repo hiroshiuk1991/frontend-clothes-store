@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Button } from '@material-ui/core'
 
 
-const NavBar = ({username, signOut}) => {
+const NavBar = ({username, signOut, filterBy, updateFilter, updateSearchTerm}) => {
     return (
         <div>
         <div className='navdiv'>
@@ -17,9 +17,27 @@ const NavBar = ({username, signOut}) => {
                     <Button onClick={signOut} variant='contained' color='primary'>
                     SIGN OUT
                 </Button>
-            )}
-        </div>
-        </div>
+                
+            )} </div>
+            <label>
+                  <strong>Filter:</strong>
+                  <select value={filterBy} onChange={updateFilter}>         
+                    <option>All</option>
+                    <option>Mens</option>
+                    <option>Womens</option>
+                    <option>Kids</option>
+                  </select>
+             </label>
+           
+           <br></br>
+            Search for items:
+              <input onChange={updateSearchTerm} placeholder='enter clothing type..' /> 
+              
+           
+           <br></br>
+           </div>
+        
+        
     )
 }
 
