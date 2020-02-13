@@ -76,7 +76,7 @@ class SignUpPage extends React.Component {
         />
 
         <br />
-        <Button onClick={handleSubmit} variant='contained' color='primary'>
+        <Button onChange={handleSubmit} variant='contained' color='primary'>
           SUBMIT
         </Button>
         <br />
