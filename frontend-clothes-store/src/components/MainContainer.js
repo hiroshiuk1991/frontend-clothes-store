@@ -20,6 +20,13 @@ class MainContainer extends React.Component {
     filterBy: 'All' 
   }
 
+  updateItemsToBuy = () => {
+    API.fetchusercart()
+    .then(data => this.setState({
+      itemsToBuy: data
+    }))
+  }
+
   login = data => {
     this.setState({
       username: data.customer_username,
@@ -103,7 +110,7 @@ class MainContainer extends React.Component {
     const searchbarFilteredItems = this.searchbarFilterItems()
     const searchbarAndDropdownFiltered = this.dropdownFilterItems(searchbarFilteredItems)
     const { username, itemsToBuy, index, filterBy, searchTerm} = this.state //took items away as not nec
-    const { signOut, login, addToCart, renderMore, updateFilter, updateSearchTerm } = this
+    const { signOut, login, addToCart, renderMore, updateFilter, updateSearchTerm, updateItemsToBuy } = this
     const renderEight = searchbarAndDropdownFiltered.slice(index, index + 8)
         return (
       <div>
@@ -157,7 +164,7 @@ class MainContainer extends React.Component {
               <Route
                 exact
                 path='/cart'
-                component={props => <Cart {...props} itemsToBuy={itemsToBuy} />}
+                component={props => <Cart {...props} itemsToBuy={itemsToBuy} updateItemsToBuy={updateItemsToBuy }/>}
               />
             </Switch>
           </div>
