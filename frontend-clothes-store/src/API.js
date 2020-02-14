@@ -53,12 +53,4 @@ export default { login, validate, createAccount, post, fetchusercart }
 
 
 
-      // const createAccount = (url, data) => 
-      //   fetch(custUrl, {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content=Type': 'application/json',
-      //       'Accepts': 'application/json'
-      //     },
-      //     body: JSON.stringify(data)
-      //   }).then(resp => resp.json())
+

@@ -7,6 +7,7 @@ class ItemCard extends React.Component {
     render () {
         
         return(
+            <div>
             <div className="card">
                 <img alt='oh no!' src={this.props.item.image} />
                 <div className="card-container">
@@ -16,6 +17,9 @@ class ItemCard extends React.Component {
                  <h3>Size: {this.props.item.size}</h3>
             
 
+            </div>
+            </div>
+            <div>
                 <button className='addtocart' onClick={() => this.props.addToCart(this.props.item.id, this.props.item.name)}> Add to Cart</button>
             </div>
             </div>
