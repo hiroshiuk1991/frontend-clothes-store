@@ -87,6 +87,7 @@ class SignUpPage extends React.Component {
         </Button>
         <br />
         <br />
+        
         {newUser ? 
           <div>
             <TextField
