@@ -17,13 +17,16 @@ class ItemList extends React.Component {
             addToCart={this.props.addToCart}
           />
         ))}
-        <button
+
+      
+      </div>
+      <div className="button-center">
+      <button
           className='morebutton'
           onClick={this.props.renderMore}
         >
           <span>More Items</span>
-        </button>
-      
+      </button>
       </div>
       </div>
     )

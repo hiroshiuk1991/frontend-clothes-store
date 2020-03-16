@@ -9,7 +9,7 @@ class ItemCard extends React.Component {
         return(
             <div>
             <div className="card">
-                <img alt='oh no!' src={this.props.item.image} />
+                <img className="adjust-card-image" alt='oh no!' src={this.props.item.image} />
                 <div className="card-container">
                  <h3><b>Name: {this.props.item.name}</b></h3>
                  <h3>Price: £{this.props.item.price}</h3>
@@ -20,7 +20,7 @@ class ItemCard extends React.Component {
             </div>
             </div>
             <div>
-                <button className='addtocart' onClick={() => this.props.addToCart(this.props.item.id, this.props.item.name)}> Add to Cart</button>
+                <button className='addtocart' onClick={() => this.props.addToCart(this.props.item)}> Add to Cart</button>
             </div>
             </div>
         )

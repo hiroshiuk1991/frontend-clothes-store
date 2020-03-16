@@ -13,7 +13,8 @@ class SignUpPage extends React.Component {
     passwordSignup: ''
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault()
     API.login(this.state.usernameLogin, this.state.passwordLogin)
       .then(data => {
         
@@ -24,7 +25,8 @@ class SignUpPage extends React.Component {
       .catch(error => alert(error))
   }
   
-  handleCreateAccount = () => {
+  handleCreateAccount = (event) => {
+    event.preventDefault()
     API.createAccount(this.state.usernameSignup, this.state.passwordSignup)
     .then(data => {
       
@@ -58,6 +60,7 @@ class SignUpPage extends React.Component {
       <div className='loginContainer'>
       <div className='logindiv'>
         <div className='wrapper'>
+          <form onSubmit={handleSubmit}>
         <TextField
           label='Username'
           value={username}
@@ -76,9 +79,10 @@ class SignUpPage extends React.Component {
         />
 
         <br />
-        <Button onChange={handleSubmit} variant='contained' color='primary'>
+        <Button type='submit' variant='contained' color='primary'>
           SUBMIT
         </Button>
+        </form>
         <br />
         <br />
 
@@ -90,6 +94,7 @@ class SignUpPage extends React.Component {
         
         {newUser ? 
           <div>
+            <form onSubmit={handleCreateAccount}>
             <TextField
               label='Username'
               value={username}
@@ -107,9 +112,10 @@ class SignUpPage extends React.Component {
               type='password'
             />
             <br />
-            <Button onClick={handleCreateAccount} variant='contained' color='primary'>
+            <Button type='submit' variant='contained' color='primary'>
             Create
             </Button>
+            </form>
             </div>
           : null }
        </div>

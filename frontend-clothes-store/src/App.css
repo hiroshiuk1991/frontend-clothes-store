@@ -5,7 +5,19 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
+.thumbnail-image-size {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  top: 10vw;
+  /* border: 1px solid black; */
+}
 
+.cart-view {
+  display: flex;
+  justify-content: space-around;
+  margin: 8px;
+}
 .prof-box {
   display: flex;
   flex-wrap: wrap;
@@ -89,6 +101,7 @@ font-size: 40px;
   color: lightcoral;
 }
 
+
 .cart {
   flex-wrap: wrap;
   justify-content: space-between;
@@ -101,6 +114,12 @@ font-size: 40px;
   border-radius: 5px;
   width: 300px;
   overflow: hidden;
+  margin-top: 10px;
+}
+.adjust-card-image{
+  width: 300px;
+  height: 500px;
+  object-fit: cover;
 }
 
 .cartcard {
@@ -110,6 +129,7 @@ transition: 0.3s;
 border-radius: 5px;
 width: 300px;
 overflow: hidden;
+margin:10px;
 }
 
 .morebutton {
@@ -128,6 +148,42 @@ overflow: hidden;
   
 }
 
+.button-center {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.front-image {
+  display:flex;
+  justify-content: center;
+ 
+}
+
+.main-image-width {
+  width: 70%;
+}
+
+.main-right-image {
+  position: absolute;
+  width: 15%;
+  left: 69vw;
+  top: 450px;
+}
+
+.main-left-image {
+  position: absolute;
+  width: 17%;
+  left: 16vw;
+  top: 450px;
+}
+
+.main-center-image {
+  position: absolute;
+  width: 14%;
+  top: 610px;
+  left: 44vw;
+}
 
 
 .morebutton span {
@@ -227,7 +283,7 @@ cursor: pointer;
   color: #ffffff;
   text-align: center;
   font-size: 14px;
-  padding: 20px;
+  padding: 10px;
   width: 100px;
   transition: all 0.5s;
   cursor: pointer;

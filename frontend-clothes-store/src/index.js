@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "@material-ui/core";
 
 import { createMuiTheme } from '@material-ui/core/styles';
+import MainContainer from "./components/MainContainer";
 // import pink from '@material-ui/core/colors/pink';
 
 const theme = createMuiTheme({
@@ -19,7 +20,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <MainContainer />
   </ThemeProvider>,
   document.getElementById("root")
 );

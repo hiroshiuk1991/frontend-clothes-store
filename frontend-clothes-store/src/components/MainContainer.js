@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import '../App.css'
-
+import MainPageImage from './MainPageImage'
 import ItemList from './ItemList'
 import SignUpPage from './SignUpPage'
 import NavBar from './NavBar'
@@ -12,42 +12,36 @@ const cartUrl = 'http://localhost:3000/carts'
 class MainContainer extends React.Component {
   state = {
     items: [],
+    itemsToBuy: [],
     username: null,
     userId: null,
-    itemsToBuy: [],
     index: 0,
     searchTerm: "",
     filterBy: 'All' 
-  }
-
-  updateItemsToBuy = () => {
-    API.fetchusercart()
-    .then(data => this.setState({
-      itemsToBuy: data
-    }))
   }
 
   login = data => {
     this.setState({
       username: data.customer_username,
       userId: data.customer_id
-    })
+    });
     localStorage.token = data.token
-  }
+  };
 
   signOut = () => {
-    this.setState({ username: null })
-    localStorage.removeItem('token')
+    this.setState({ username: null,
+    userID: null })
+    localStorage.removeItem("token")
   }
 
-  addToCart = (id, name) =>
+  addToCart = (item) => {
     API.post(cartUrl, {
       cart: {
         customer_id: this.state.userId,
-        item_id: id,
-        item_name: name
+        item_id: item.id,
+        item_name: item.name
       }
-    })
+    }).then(this.updateItemsToBuy(item))}
 
     updateSearchTerm = event => {
       this.setState({
@@ -71,14 +65,15 @@ class MainContainer extends React.Component {
     }
 
   componentDidMount () {
-    if (this.props.username === null) {
-      this.props.history.push('/')
-    } else if (localStorage.token) {
+    // if (this.props.username === null) {
+    //   this.props.history.push('/')
+    // } else 
+    if (localStorage.token) {
       API.validate()
         .then(data => {
           if (data.error) throw Error(data.error)
           this.login(data)
-          this.props.history.push('/')
+          // this.props.history.push('/')
         })
         .catch(error => alert(error))
     }
@@ -87,9 +82,20 @@ class MainContainer extends React.Component {
       .then(resp => resp.json())
       .then(items => this.setState({ items }))
 
-    fetch('http://localhost:3000/carts')
-      .then(resp => resp.json())
-      .then(items => this.setState({ itemsToBuy: items }))
+      API.fetchusercart()
+      .then(data => this.setState({
+        itemsToBuy: data
+      }))
+
+    // fetch('http://localhost:3000/carts')
+    //   .then(resp => resp.json())
+    //   .then(items => this.setState({ itemsToBuy: items }))
+  }
+
+  updateItemsToBuy(item) {
+    this.setState({
+        itemsToBuy: [...this.state.itemsToBuy, item]
+    })
   }
 
 
@@ -120,6 +126,9 @@ class MainContainer extends React.Component {
                     <h1 className='title'>The Clothes Store</h1>
           <div>
             <Switch>
+              <Route
+              exact path='/'
+              render={props => <MainPageImage {...props}/>}/>
               <Route
                 exact
                 path='/login'
@@ -164,7 +173,7 @@ class MainContainer extends React.Component {
               <Route
                 exact
                 path='/cart'
-                component={props => <Cart {...props} itemsToBuy={itemsToBuy} updateItemsToBuy={updateItemsToBuy }/>}
+                render={props => <Cart {...props} itemsToBuy={itemsToBuy} updateItemsToBuy={updateItemsToBuy }/>}
               />
             </Switch>
           </div>
